@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tarefas-front-service
+  labels:
+    name: tarefas-front-service
+    app: tarefas-app
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30002
+  selector:
+    name: tarefas-front-pod
+    app: tarefas-app

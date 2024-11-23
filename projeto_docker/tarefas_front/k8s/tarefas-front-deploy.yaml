@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tarefas-front-deploy
+  labels:
+    name: tarefas-front-deploy
+    app: tarefas-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: tarefas-front-pod
+      app: tarefas-app
+  template:
+    metadata:
+      name: tarefas-front-pod
+      labels:
+        name: tarefas-front-pod
+        app: tarefas-app
+    spec:
+      containers:
+        - name: frontend
+          image: halderson/tarefas_front
+          ports: 
+            - containerPort: 80

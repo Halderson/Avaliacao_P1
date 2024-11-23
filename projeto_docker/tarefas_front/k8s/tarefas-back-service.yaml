@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tarefas-back-service
+  labels:
+    name: tarefas-back-service
+    app: tarefas-app
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30001
+  selector:
+    name: tarefas-back-pod
+    app: tarefas-app

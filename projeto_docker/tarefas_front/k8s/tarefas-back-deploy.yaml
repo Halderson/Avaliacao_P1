@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tarefas-back-deploy
+  labels:
+    name: tarefas-back-deploy
+    app: tarefas-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: tarefas-back-pod
+      app: tarefas-app
+  template:
+    metadata:
+      name: tarefas-back-pod
+      labels:
+        name: tarefas-back-pod
+        app: tarefas-app
+    spec:
+      containers:
+        - name: backend
+          image: halderson/tarefas_back
+          ports: 
+            - containerPort: 8080
+          env:
+            - name: DATABASE_HOST
+              value: "mongo-service"
+            - name: DATABASE_NAME
+              value: "tarefas"
+            - name: MONGO_URL
+              value: "mongodb://mongo-service:27017/tarefas"
